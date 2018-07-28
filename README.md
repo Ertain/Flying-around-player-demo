@@ -6,4 +6,5 @@ This is a little demo I whipped up to answer [this question](https://godotengine
 **Short description**: the player is moved around by the left and right arrows. As the player moves near the flying chicken, it starts to pursue him. Under the hood, a number of `Vector2D`s are created. These are combined with a `Curve2D` and this is used to move the chicken towards the player. While the code isn't perfect, it demonstrates the idea.
 
 **Screenshot**
-![Avoid the chicken!](Avoid the chicken.png)
+
+![Avoid the chicken!](Avoid_the_chicken.png)
