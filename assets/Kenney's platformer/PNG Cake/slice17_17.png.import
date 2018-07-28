@@ -1,0 +1,29 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/slice17_17.png-0201dc9f1532caf428a92065a265e65f.stex"
+
+[deps]
+
+source_file="res://assets/Kenney's platformer/PNG Cake/slice17_17.png"
+dest_files=[ "res://.import/slice17_17.png-0201dc9f1532caf428a92065a265e65f.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

@@ -1,0 +1,172 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://pursuit.gd" type="Script" id=1]
+[ext_resource path="res://assets/Kenney's platformer/PNG Cake/Cake.tsx" type="TileSet" id=2]
+[ext_resource path="res://player.gd" type="Script" id=3]
+[ext_resource path="res://assets/Kenney's platformer/p1_front.png" type="Texture" id=4]
+[ext_resource path="res://assets/Flappy chicken/Transparent PNG/flying/frame-1.png" type="Texture" id=5]
+[ext_resource path="res://assets/Flappy chicken/Transparent PNG/flying/frame-2.png" type="Texture" id=6]
+[ext_resource path="res://assets/Flappy chicken/Transparent PNG/flying/frame-3.png" type="Texture" id=7]
+[ext_resource path="res://assets/Flappy chicken/Transparent PNG/flying/frame-4.png" type="Texture" id=8]
+[ext_resource path="res://Rimsky-Korsakov - flight of the bumblebee.ogg" type="AudioStream" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 22, 14 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 17.4286, 51.6901 )
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 11.9489, 13.1206 )
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 14, 10 )
+
+[node name="pursuit" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="Cake" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 70, 70 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 327680, 25, 0, 327681, 25, 0, 327682, 25, 0, 327683, 25, 0, 327684, 25, 0, 327685, 25, 0, 327686, 25, 0, 327687, 25, 0, 327688, 25, 0, 327689, 25, 0, 327690, 25, 0, 327691, 25, 0, 327692, 25, 0, 327693, 25, 0, 327694, 25, 0, 393216, 29, 0, 393217, 29, 0, 393218, 29, 0, 393219, 29, 0, 393220, 29, 0, 393221, 29, 0, 393222, 29, 0, 393223, 29, 0, 393224, 29, 0, 393225, 29, 0, 393226, 29, 0, 393227, 29, 0, 393228, 29, 0, 393229, 29, 0, 393230, 29, 0, 458752, 29, 0, 458753, 29, 0, 458754, 29, 0, 458755, 29, 0, 458756, 29, 0, 458757, 29, 0, 458758, 29, 0, 458759, 29, 0, 458760, 29, 0, 458761, 29, 0, 458762, 29, 0, 458763, 29, 0, 458764, 29, 0, 458765, 29, 0, 458766, 29, 0, 524288, 29, 0, 524289, 29, 0, 524290, 29, 0, 524291, 29, 0, 524292, 29, 0, 524293, 29, 0, 524294, 29, 0, 524295, 29, 0, 524296, 29, 0, 524297, 29, 0, 524298, 29, 0, 524299, 29, 0, 524300, 29, 0, 524301, 29, 0, 524302, 29, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="1"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
+
+position = Vector2( 525, 490 )
+scale = Vector2( 23.88, 10 )
+shape = SubResource( 1 )
+
+[node name="player" type="KinematicBody2D" parent="." index="2"]
+
+position = Vector2( 170, 304 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" index="0"]
+
+position = Vector2( 0, -2 )
+scale = Vector2( 2.06557, 0.928422 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="player" index="1"]
+
+texture = ExtResource( 4 )
+
+[node name="bird" type="AnimatedSprite" parent="." index="3"]
+
+position = Vector2( 612, 138 )
+frames = SubResource( 3 )
+animation = "default"
+frame = 2
+playing = true
+flip_h = true
+_sections_unfolded = [ "Offset" ]
+
+[node name="area of detection" type="Area2D" parent="bird" index="0"]
+
+position = Vector2( -612, -138 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bird/area of detection" index="0"]
+
+position = Vector2( 604, 127.452 )
+scale = Vector2( 13.5577, 10.2073 )
+shape = SubResource( 4 )
+
+[node name="walls" type="StaticBody2D" parent="." index="4"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="left wall" type="CollisionShape2D" parent="walls" index="0"]
+
+position = Vector2( -6.5, 176 )
+scale = Vector2( 0.558824, 17.8462 )
+shape = SubResource( 5 )
+
+[node name="right wall" type="CollisionShape2D" parent="walls" index="1"]
+
+position = Vector2( 1060, 174 )
+scale = Vector2( 0.558824, 17.8462 )
+shape = SubResource( 5 )
+
+[node name="Flight of the Bumblebee" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 9 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="body_entered" from="bird/area of detection" to="." method="_on_area_of_detection_body_entered"]
+
+[connection signal="body_exited" from="bird/area of detection" to="." method="_on_area_of_detection_body_exited"]
+
+
